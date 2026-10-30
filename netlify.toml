@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Browser inference uses onnxruntime-web; skip the Node GPU binary download.
+  ONNXRUNTIME_NODE_INSTALL = "skip"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Embedder-Policy = "credentialless"
+    Cross-Origin-Opener-Policy = "same-origin"
